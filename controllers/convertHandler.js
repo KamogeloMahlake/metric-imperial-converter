@@ -18,15 +18,16 @@ function ConvertHandler() {
     else
     {
       let number = array.length === 2 ? array[1].split("") : input.split("");
-      let finalNumber = "";
+      let finalNumber = [];
       for (const x of number)
       {
-        if (x === ".") finalNumber += x;
-        else if (Number(x)) finalNumber += x;
-      }
+        if (x === ".") finalNumber.push(x);
+        else if (Number(x) || x === '0') finalNumber.push(x);
 
-      if (array.length === 2) return +array[1] / +finalNumber;
-      if (finalNumber === 0) return 1;
+      }
+      if (finalNumber.length === 0) return 1;
+      finalNumber = finalNumber.join("");
+      if (array.length === 2) return +array[0] / +finalNumber;
       return isNaN(+finalNumber) ? "invalid number" : +finalNumber      
     }
   };
